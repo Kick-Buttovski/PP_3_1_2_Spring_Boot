@@ -1,31 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 0px;
+            border: 2px double;
+            margin-top: 10px;
+        }
+
+        td, th {
+            border: 2px solid;
+            padding: 5px;
+        }
+
+        a.btn {
+            color: #000;
+            background-color: #fff;
+            border: 2px solid #000;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        a.btn-success {
+            color: #00ff00;
+            background-color: #fff;
+        }
+
+        a.btn-info {
+            color: #0000ff;
+            background-color: #fff;
+        }
+
+        a.btn-info:hover {
+            color: #fff;
+            background-color: #a52a2a;
+        }
+
+        a.btn-danger {
+            color: #ff0000;
+            background-color: #fff;
+        }
+
+        a.btn-danger:hover {
+            color: #fff;
+            background-color: #ff8989;
+        }
+
+        a.btn-link {
+            color: #A52A2A;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
 <h1>Users</h1>
+<br>
+<a th:href="@{/user/add}" class="btn btn-success">Add new user</a>
+<br><br>
 <table>
     <tr>
         <th>Id</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Age</th>
+        <th>Profile</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="user : ${users}">
         <td th:utext="${user.id}"></td>
         <td th:utext="${user.name}"></td>
         <td th:utext="${user.surname}"></td>
         <td th:utext="${user.age}"></td>
-        <td><a class="btn btn-primary" th:href="@{/user/profile(id=${user.getId()})}">Profile</a></td>
-        <td><a class="btn btn-warning" th:href="@{/user/edit(id=${user.getId()})}">Edit</a></td>
+        <td><a class="btn btn-info" th:href="@{/user/profile(id=${user.getId()})}">Profile</a></td>
+        <td><a class="btn btn-info" th:href="@{/user/edit(id=${user.getId()})}">Edit</a></td>
         <td><a class="btn btn-danger" th:href="@{/user/delete(id=${user.getId()})}">Delete</a></td>
     </tr>
 </table>
-</br>
-<a th:href="@{/user/add}">Add</a>
 </body>
 </html>
 

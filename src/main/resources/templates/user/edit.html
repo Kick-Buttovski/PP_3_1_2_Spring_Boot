@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
+    <style>
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-    <form th:method="POST" th:action="@{/user/update}" th:object="${user}">
-        <input type="hidden" th:value="${user.getId()}" id="id" name="id"/>
-        <label for="name">Name: </label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <label for="surname">Surname: </label>
-        <input type="text" th:field="*{surname}" id="surname"/>
-        <label for="age">Age: </label>
-        <input type="text" th:field="*{age}" id="age"/>
-        <br/>
-        <input type="submit" value="Update"/>
-        <button th:href="@{/user}">Back</button>
-    </form>
+<form th:method="POST" th:action="@{/user/update}" th:object="${user}">
+    <input type="hidden" th:value="${user.getId()}" id="id" name="id"/>
+    <label for="name">Name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
+    <br/>
+
+    <label for="surname">Surname: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></span>
+    <br/>
+
+    <label for="age">Age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error"></span>
+    <br/>
+
+    <input type="submit" value="Update"/>
+    <button th:href="@{/user}">Back</button>
+</form>
 </body>
 </html>
